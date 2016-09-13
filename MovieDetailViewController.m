@@ -74,8 +74,10 @@
                                                     self.runtimeLable.text = runtimeString;
                                                     float voteAverage = [responseDictionary[@"vote_average"] floatValue] * 10;
                                                     self.voteLabel.text = [NSString stringWithFormat:@"Vote: %0.f%%", voteAverage];
+                                                    [self.errorView setHidden:YES];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
+                                                    [self.errorView setHidden:NO];
                                                 }
                                             }];
     [task resume];

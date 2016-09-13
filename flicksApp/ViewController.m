@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) NSMutableArray *movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
+
 
 @end
 
@@ -30,8 +32,9 @@
 
     NSLog(@"fetching the movies!");
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    NSString *endpointURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=", self.endpoint];
     NSString *urlString =
-    [@"https://api.themoviedb.org/3/movie/now_playing?api_key=" stringByAppendingString:apiKey];
+    [endpointURL stringByAppendingString:apiKey];
 
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -63,8 +66,10 @@
                                                         }
                                                     }
                                                     [self.tableView reloadData];
+                                                    [self.errorView setHidden:YES];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
+                                                    [self.errorView setHidden:NO];
                                                 }
                                             }];
     [task resume];
