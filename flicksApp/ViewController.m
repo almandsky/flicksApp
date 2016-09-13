@@ -24,13 +24,7 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-
-    NSLog(@"fetching the movies!");
+-(void)fetchMovies{
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
     NSString *endpointURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=", self.endpoint];
     NSString *urlString =
@@ -43,7 +37,7 @@
     [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                   delegate:nil
                              delegateQueue:[NSOperationQueue mainQueue]];
-    
+
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable response,
@@ -73,6 +67,27 @@
                                                 }
                                             }];
     [task resume];
+}
+
+
+-(void)refresh:(id)sender {
+    [self fetchMovies];
+    [sender endRefreshing];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+
+    // pull to refresh
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+
+    NSLog(@"fetching the movies!");
+    [self fetchMovies];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"view loaded");
 }
@@ -137,5 +152,6 @@
         NSLog(@"sender is %@",sender);
     }
 }
+
 
 @end
