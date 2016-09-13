@@ -9,10 +9,12 @@
 #import "ViewController.h"
 #import "MovieCell.h"
 #import "MovieDetailViewController.h"
+#import "TrailerViewController.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSMutableArray *movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -48,8 +50,16 @@
                                                     [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:kNilOptions
                                                                                       error:&jsonError];
-                                                    NSLog(@"Response: %@", responseDictionary);
-                                                    self.movies = responseDictionary[@"results"];
+                                                    NSArray *tempMovies = responseDictionary[@"results"];
+                                                    self.movies = [[NSMutableArray alloc] init];
+                                                    for (NSDictionary *movie in tempMovies) {
+                                                        if (![movie[@"poster_path"] isEqual:[NSNull null]]) {
+                                                            //NSLog(@"found poster_path for title %@", movie[@"title"]);
+                                                            [self.movies addObject:movie];
+                                                        } else {
+                                                            NSLog(@"found empty poster_path for title %@", movie[@"title"]);
+                                                        }
+                                                    }
                                                     [self.tableView reloadData];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
@@ -70,25 +80,54 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath is : %ld", (long) indexPath.row);
+    //NSLog(@"indexPath is : %ld", (long) indexPath.row);
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     NSDictionary *movie = self.movies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.overviewLabel.text = movie[@"overview"];
+
+    //NSLog(@"title is %@", movie[@"title"]);
+    NSString *posterPath = movie[@"poster_path"];
+    //NSLog(@"poster path is %@", posterPath);
+
+    NSString *urlString =
+    [@"https://image.tmdb.org/t/p/w92" stringByAppendingString:posterPath];
+    //NSLog(@"url path is %@", urlString);
+    /*
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session =
+    [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                  delegate:nil
+                             delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData * _Nullable data,
+                                                                NSURLResponse * _Nullable response,
+                                                                NSError * _Nullable error) {
+                                                if (!error) {
+                                                    UIImage *image = [UIImage imageWithData:data];
+                                                    [cell.thumbImage setImage:image];
+                                                } else {
+                                                    NSLog(@"An error occurred: %@", error.description);
+                                                }
+                                            }];
+    [task resume];
+    */
+    [cell.thumbImage setImageWithURL:[NSURL URLWithString:urlString]];
     return cell;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
     if ([segue.identifier isEqualToString:@"detailSegue"]){
         MovieCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         MovieDetailViewController *vc = segue.destinationViewController;
         vc.movie = self.movies[indexPath.row];
     } else {
-        NSLog(@"not detail");
+        TrailerViewController *tvc = segue.destinationViewController;
+        NSLog(@"sender is %@",sender);
     }
-    
-    
 }
 
 @end
