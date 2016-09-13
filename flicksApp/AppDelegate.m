@@ -17,6 +17,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    /*
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *topRatedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
+    MoviesViewController *topRatedViewController = (MoviesViewController *)[topRatedNavigationController topViewController];
+    topRatedViewController.endpoint = @"top_rated";
+    
+    UINavigationController *nowPlayingNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
+    MoviesViewController *nowPlayingController = (MoviesViewController *)[nowPlayingNavigationController topViewController];
+    nowPlayingController.endpoint = @"now_playing";
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[topRatedNavigationController, nowPlayingNavigationController];
+    
+    self.window.rootViewController = tabBarController;
+    */
+    
     return YES;
 }
 
