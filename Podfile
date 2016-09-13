@@ -8,6 +8,7 @@ target 'flicksApp' do
   # Pods for flicksApp
   # This pulls in the latest version of AFNetworking >= 2.6 but less than 3.0.
   pod 'AFNetworking', '~> 2.6'
+  pod 'MBProgressHUD', '~> 0.9'
 
   target 'flicksAppTests' do
     inherit! :search_paths
