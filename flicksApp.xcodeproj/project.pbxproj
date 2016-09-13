@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091DAEB21D88AE200036279F /* iconmonstr-video-9-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEB01D88AE200036279F /* iconmonstr-video-9-24.png */; };
+		091DAEB31D88AE200036279F /* iconmonstr-star-2-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEB11D88AE200036279F /* iconmonstr-star-2-24.png */; };
+		091DAEBE1D88B6F90036279F /* iconmonstr-time-6-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEBC1D88B6F90036279F /* iconmonstr-time-6-16.png */; };
+		091DAEBF1D88B6F90036279F /* iconmonstr-crown-5-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEBD1D88B6F90036279F /* iconmonstr-crown-5-16.png */; };
 		09574E151D8748F2007FE7AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09574E141D8748F2007FE7AB /* main.m */; };
 		09574E181D8748F2007FE7AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09574E171D8748F2007FE7AB /* AppDelegate.m */; };
 		09574E1B1D8748F2007FE7AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09574E1A1D8748F2007FE7AB /* ViewController.m */; };
@@ -42,6 +46,10 @@
 
 /* Begin PBXFileReference section */
 		06BB890FC91130C8C1EE2A7D /* Pods-flicksAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flicksAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flicksAppUITests/Pods-flicksAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		091DAEB01D88AE200036279F /* iconmonstr-video-9-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-video-9-24.png"; sourceTree = "<group>"; };
+		091DAEB11D88AE200036279F /* iconmonstr-star-2-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-star-2-24.png"; sourceTree = "<group>"; };
+		091DAEBC1D88B6F90036279F /* iconmonstr-time-6-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-time-6-16.png"; sourceTree = "<group>"; };
+		091DAEBD1D88B6F90036279F /* iconmonstr-crown-5-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-crown-5-16.png"; sourceTree = "<group>"; };
 		09574E101D8748F2007FE7AB /* flicksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flicksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09574E141D8748F2007FE7AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09574E161D8748F2007FE7AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 		09574E131D8748F2007FE7AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				091DAEBC1D88B6F90036279F /* iconmonstr-time-6-16.png */,
+				091DAEBD1D88B6F90036279F /* iconmonstr-crown-5-16.png */,
+				091DAEB01D88AE200036279F /* iconmonstr-video-9-24.png */,
+				091DAEB11D88AE200036279F /* iconmonstr-star-2-24.png */,
 				09574E141D8748F2007FE7AB /* main.m */,
 			);
 			name = "Supporting Files";
@@ -322,9 +334,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091DAEBF1D88B6F90036279F /* iconmonstr-crown-5-16.png in Resources */,
 				09574E231D8748F2007FE7AB /* LaunchScreen.storyboard in Resources */,
+				091DAEB21D88AE200036279F /* iconmonstr-video-9-24.png in Resources */,
+				091DAEBE1D88B6F90036279F /* iconmonstr-time-6-16.png in Resources */,
 				09574E201D8748F2007FE7AB /* Assets.xcassets in Resources */,
 				09574E1E1D8748F2007FE7AB /* Main.storyboard in Resources */,
+				091DAEB31D88AE200036279F /* iconmonstr-star-2-24.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

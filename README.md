@@ -11,7 +11,7 @@ Completed user stories:
  * [x] Required: User sees loading state while waiting for movies API. You can use one of the 3rd party libraries listed on CocoaControls.
  * [x] Required: User sees an error message when there's a networking error. You may not use UIAlertController or a 3rd party library to display the error. See this screenshot for what the error message should look like.
  * [x] Required: User can pull to refresh the movie list.
- * [] Required: Add a tab bar for Now Playing or Top Rated movies. (high)
+ * [x] Required: Add a tab bar for Now Playing or Top Rated movies. (high)
  * [] Required: Implement a UISegmentedControl to switch between a list view and a grid view. (high)
  * [] Optional: Add a search bar. (med)
  * [] Optional: All images fade in as they are loading. (low)

@@ -14,9 +14,11 @@
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDate;
 @property (weak, nonatomic) IBOutlet UILabel *runtimeLable;
+@property (weak, nonatomic) IBOutlet UIImageView *runtimeImage;
 @property (weak, nonatomic) IBOutlet UILabel *voteLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detailImage;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (weak, nonatomic) IBOutlet UIImageView *voteImage;
 
 @property (nonatomic,strong) NSDictionary *movie;
 

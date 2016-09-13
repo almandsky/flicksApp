@@ -24,15 +24,20 @@
     UINavigationController *topRatedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
     ViewController *topRatedViewController = (ViewController *)[topRatedNavigationController topViewController];
     topRatedViewController.endpoint = @"top_rated";
+    topRatedNavigationController.tabBarItem.title = @"Top Rated";
+    topRatedNavigationController.tabBarItem.image = [UIImage imageNamed:@"iconmonstr-star-2-24.png"];
     
     UINavigationController *nowPlayingNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
     ViewController *nowPlayingController = (ViewController *)[nowPlayingNavigationController topViewController];
     nowPlayingController.endpoint = @"now_playing";
+    nowPlayingNavigationController.tabBarItem.title = @"Now Playing";
+    nowPlayingNavigationController.tabBarItem.image = [UIImage imageNamed:@"iconmonstr-video-9-24.png"];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[topRatedNavigationController, nowPlayingNavigationController];
+    tabBarController.viewControllers = @[nowPlayingNavigationController,topRatedNavigationController];
     
     self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
     
     
     return YES;

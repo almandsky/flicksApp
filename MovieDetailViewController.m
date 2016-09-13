@@ -19,6 +19,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.titleLabel.text = self.movie[@"title"];
+    self.voteImage.image = [UIImage imageNamed:@"iconmonstr-crown-5-16.png"];
+    self.runtimeImage.image = [UIImage imageNamed:@"iconmonstr-time-6-16.png"];
 
     self.overviewLabel.text = self.movie[@"overview"];
     [self.overviewLabel sizeToFit];
@@ -70,10 +72,10 @@
                                                     int runtime = [responseDictionary[@"runtime"] intValue];
                                                     int hour = runtime / 60;
                                                     int mins = runtime % 60;
-                                                    NSString * runtimeString = [NSString stringWithFormat:@"Dur: %d hr %d mins", hour, mins];
+                                                    NSString * runtimeString = [NSString stringWithFormat:@"%d hr %d mins", hour, mins];
                                                     self.runtimeLable.text = runtimeString;
                                                     float voteAverage = [responseDictionary[@"vote_average"] floatValue] * 10;
-                                                    self.voteLabel.text = [NSString stringWithFormat:@"Vote: %0.f%%", voteAverage];
+                                                    self.voteLabel.text = [NSString stringWithFormat:@"%0.f%%", voteAverage];
                                                     [self.errorView setHidden:YES];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
