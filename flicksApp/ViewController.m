@@ -26,15 +26,15 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+
     NSLog(@"fetching the movies!");
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
     NSString *urlString =
     [@"https://api.themoviedb.org/3/movie/now_playing?api_key=" stringByAppendingString:apiKey];
-    
+
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    
+
     NSURLSession *session =
     [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                   delegate:nil
