@@ -25,6 +25,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tta-yT-E4t">
+                                                    <rect key="frame" x="102" y="8" width="185" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="caB-tr-qJT">
                                                     <rect key="frame" x="102" y="43" width="185" height="77"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -44,17 +51,11 @@
                                                         <segue destination="i0O-Rg-FoQ" kind="modal" identifier="trailerSegue" modalTransitionStyle="flipHorizontal" id="rl6-ke-zRK"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tta-yT-E4t">
-                                                    <rect key="frame" x="102" y="8" width="185" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="overviewLabel" destination="caB-tr-qJT" id="ddv-5s-BOz"/>
+                                            <outlet property="thumbImage" destination="79X-EV-LjR" id="0gn-KL-BlK"/>
                                             <outlet property="titleLabel" destination="Tta-yT-E4t" id="PEO-R4-Q54"/>
                                             <segue destination="5Tg-yx-FKL" kind="push" identifier="detailSegue" id="J1r-iy-LC5"/>
                                         </connections>
@@ -80,19 +81,20 @@
                     <view key="view" contentMode="scaleToFill" id="CeX-Vw-qpM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="07U-fx-cbu">
-                                <rect key="frame" x="143" y="117" width="34" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IWB-oc-Wmh">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="2tb-j5-bmA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="07U-fx-cbu">
+                                <rect key="frame" x="16" y="7" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="onButton:" destination="jfS-j3-dmg" eventType="touchUpInside" id="Pzy-bP-RrO"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="IWB-oc-Wmh"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDg-uG-NEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -143,7 +145,6 @@
         <!--Navigation Controller-->
         <scene sceneID="f8d-Uo-vT3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HSy-IK-1Yh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Apa-dt-v5L" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="63F-UE-fRO">
@@ -155,6 +156,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="n4E-RK-44n"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSy-IK-1Yh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="162" y="278"/>
         </scene>
