@@ -152,26 +152,34 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JFS-fx-S9f">
-                                                <rect key="frame" x="8" y="29" width="248" height="21"/>
+                                                <rect key="frame" x="8" y="26" width="248" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LMk-Lr-QQ3">
-                                                <rect key="frame" x="134" y="43" width="122" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LMk-Lr-QQ3">
+                                                <rect key="frame" x="143" y="46" width="113" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ar1-Ra-gsQ">
-                                                <rect key="frame" x="8" y="43" width="102" height="21"/>
+                                                <rect key="frame" x="26" y="46" width="95" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="l5I-wl-K2f">
+                                                <rect key="frame" x="8" y="49" width="14" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CQV-8H-n3P">
+                                                <rect key="frame" x="125" y="49" width="14" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="0.71149157801418439" colorSpace="calibratedWhite"/>
                                     </view>
@@ -202,8 +210,10 @@
                         <outlet property="infoView" destination="ybp-bQ-j1B" id="Nu1-8W-BxE"/>
                         <outlet property="overviewLabel" destination="1vl-Qk-mPS" id="bsm-RY-KcF"/>
                         <outlet property="releaseDate" destination="JFS-fx-S9f" id="mdr-Dt-yeA"/>
+                        <outlet property="runtimeImage" destination="CQV-8H-n3P" id="ZXO-PJ-P04"/>
                         <outlet property="runtimeLable" destination="LMk-Lr-QQ3" id="Q0R-2e-c3u"/>
                         <outlet property="titleLabel" destination="W6Z-5k-4uR" id="Jiq-Ih-itV"/>
+                        <outlet property="voteImage" destination="l5I-wl-K2f" id="WM3-9V-OBS"/>
                         <outlet property="voteLabel" destination="ar1-Ra-gsQ" id="o8d-Te-F7q"/>
                     </connections>
                 </viewController>
