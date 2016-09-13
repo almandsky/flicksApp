@@ -11,6 +11,7 @@
 #import "MovieDetailViewController.h"
 #import "TrailerViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import "MBProgressHUD.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -44,6 +45,7 @@
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable response,
                                                                 NSError * _Nullable error) {
+                                                [MBProgressHUD hideHUDForView:self.view animated:YES];
                                                 if (!error) {
                                                     NSError *jsonError = nil;
                                                     NSDictionary *responseDictionary =
@@ -66,6 +68,7 @@
                                                 }
                                             }];
     [task resume];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"view loaded");
 }
 
