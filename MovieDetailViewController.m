@@ -8,6 +8,7 @@
 
 #import "MovieDetailViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import "MBProgressHUD.h"
 
 @interface MovieDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
@@ -42,10 +43,40 @@
     // set the background image
     NSString *posterPath = self.movie[@"poster_path"];
     NSLog(@"poster path is %@", posterPath);
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    NSString *urlString = [@"https://image.tmdb.org/t/p/w342" stringByAppendingString:posterPath];
-    [self.detailImage setImageWithURL:[NSURL URLWithString:urlString]];
-
+    NSString *urlString = [@"https://image.tmdb.org/t/p/w150" stringByAppendingString:posterPath];
+    NSString *largeImgUrlString = [@"https://image.tmdb.org/t/p/w342" stringByAppendingString:posterPath];
+    //[self.detailImage setImageWithURL:[NSURL URLWithString:urlString]];
+    [self.detailImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                           placeholderImage:nil
+                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                        // Here you can animate the alpha of the imageview from 0.0 to 1.0 in 0.3 seconds
+                                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                        [self.detailImage setAlpha:0.0];
+                                        [self.detailImage setImage:image];
+                                        [UIView animateWithDuration:0.3 animations:^{
+                                            [self.detailImage setAlpha:1.0];
+                                        } completion:^(BOOL finished) {
+                                            NSLog(@"loading the large image %@", largeImgUrlString);
+                                            [self.detailImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:largeImgUrlString]]
+                                                                    placeholderImage:nil
+                                                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                                                                 [self.detailImage setImage:image];
+                                                                             }
+                                                                             failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                                                                 // Your failure handle code
+                                                                                 NSLog(@"load image %@ failed.", urlString);
+                                                                             }];
+                                        }];
+                                    }
+                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                        // Your failure handle code
+                                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                        NSLog(@"load image %@ failed.", urlString);
+                                    }];
+    
 
     // get the movies details
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
