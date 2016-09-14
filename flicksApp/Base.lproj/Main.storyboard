@@ -48,7 +48,7 @@
                                                     <rect key="frame" x="14" y="9" width="80" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <segue destination="i0O-Rg-FoQ" kind="modal" identifier="trailerSegue" modalTransitionStyle="flipHorizontal" id="rl6-ke-zRK"/>
+                                                        <segue destination="i0O-Rg-FoQ" kind="modal" identifier="trailerSegue" modalTransitionStyle="crossDissolve" id="rl6-ke-zRK"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -133,7 +133,7 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="NOY-jR-6W7">
@@ -183,16 +183,26 @@
                     <view key="view" contentMode="scaleToFill" id="CeX-Vw-qpM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="hIV-xu-aL8">
+                                <rect key="frame" x="140" y="224" width="88" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="IWB-oc-Wmh">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="2tb-j5-bmA">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="07U-fx-cbu">
-                                <rect key="frame" x="16" y="7" width="34" height="30"/>
+                        <barButtonItem key="leftBarButtonItem" id="c5O-B3-F5V">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oBq-59-oG2">
+                                <rect key="frame" x="16" y="10" width="97" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
+                                <inset key="contentEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Back" image="iconmonstr-arrow-25-24.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="onButton:" destination="jfS-j3-dmg" eventType="touchUpInside" id="Pzy-bP-RrO"/>
+                                    <action selector="onButton:" destination="jfS-j3-dmg" eventType="touchUpInside" id="hxs-QM-TTH"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -344,6 +354,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="iconmonstr-arrow-25-24.png" width="24" height="24"/>
         <image name="iconmonstr-menu-2-16.png" width="16" height="16"/>
         <image name="iconmonstr-view-6-16.png" width="16" height="16"/>
     </resources>

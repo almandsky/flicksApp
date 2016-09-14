@@ -14,6 +14,7 @@
 		091DAEC21D88BF010036279F /* iconmonstr-view-6-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEC01D88BF010036279F /* iconmonstr-view-6-16.png */; };
 		091DAEC31D88BF010036279F /* iconmonstr-menu-2-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEC11D88BF010036279F /* iconmonstr-menu-2-16.png */; };
 		091DAEC61D88C70C0036279F /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DAEC51D88C70B0036279F /* MovieCollectionViewCell.m */; };
+		091DAEC81D894E350036279F /* iconmonstr-arrow-25-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DAEC71D894E350036279F /* iconmonstr-arrow-25-24.png */; };
 		09574E151D8748F2007FE7AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09574E141D8748F2007FE7AB /* main.m */; };
 		09574E181D8748F2007FE7AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09574E171D8748F2007FE7AB /* AppDelegate.m */; };
 		09574E1B1D8748F2007FE7AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09574E1A1D8748F2007FE7AB /* ViewController.m */; };
@@ -57,6 +58,7 @@
 		091DAEC11D88BF010036279F /* iconmonstr-menu-2-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-menu-2-16.png"; sourceTree = "<group>"; };
 		091DAEC41D88C70B0036279F /* MovieCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCollectionViewCell.h; sourceTree = "<group>"; };
 		091DAEC51D88C70B0036279F /* MovieCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionViewCell.m; sourceTree = "<group>"; };
+		091DAEC71D894E350036279F /* iconmonstr-arrow-25-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-arrow-25-24.png"; sourceTree = "<group>"; };
 		09574E101D8748F2007FE7AB /* flicksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flicksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09574E141D8748F2007FE7AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09574E161D8748F2007FE7AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		09574E131D8748F2007FE7AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				091DAEC71D894E350036279F /* iconmonstr-arrow-25-24.png */,
 				091DAEC01D88BF010036279F /* iconmonstr-view-6-16.png */,
 				091DAEC11D88BF010036279F /* iconmonstr-menu-2-16.png */,
 				091DAEBC1D88B6F90036279F /* iconmonstr-time-6-16.png */,
@@ -349,6 +352,7 @@
 				09574E231D8748F2007FE7AB /* LaunchScreen.storyboard in Resources */,
 				091DAEB21D88AE200036279F /* iconmonstr-video-9-24.png in Resources */,
 				091DAEBE1D88B6F90036279F /* iconmonstr-time-6-16.png in Resources */,
+				091DAEC81D894E350036279F /* iconmonstr-arrow-25-24.png in Resources */,
 				09574E201D8748F2007FE7AB /* Assets.xcassets in Resources */,
 				091DAEC31D88BF010036279F /* iconmonstr-menu-2-16.png in Resources */,
 				09574E1E1D8748F2007FE7AB /* Main.storyboard in Resources */,

@@ -14,7 +14,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "MBProgressHUD.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *movies;
 @property (strong, nonatomic) NSMutableArray* filteredTableData;
@@ -145,6 +145,7 @@
     //NSLog(@"indexPath is : %ld", (long) indexPath.row);
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     NSMutableArray *data;
+    cell.thumbImage.image = nil;
     if(self.isFiltered)
         data = self.filteredTableData;
     else
@@ -160,27 +161,26 @@
     NSString *urlString =
     [@"https://image.tmdb.org/t/p/w92" stringByAppendingString:posterPath];
     //NSLog(@"url path is %@", urlString);
-    /*
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                  delegate:nil
-                             delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                            completionHandler:^(NSData * _Nullable data,
-                                                                NSURLResponse * _Nullable response,
-                                                                NSError * _Nullable error) {
-                                                if (!error) {
-                                                    UIImage *image = [UIImage imageWithData:data];
-                                                    [cell.thumbImage setImage:image];
-                                                } else {
-                                                    NSLog(@"An error occurred: %@", error.description);
-                                                }
+    [cell.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                           placeholderImage:nil
+                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                        // Here you can animate the alpha of the imageview from 0.0 to 1.0 in 0.3 seconds
+                                        if (response != nil) {
+                                            // NSLog(@"image is not cached");
+                                            [cell.thumbImage setAlpha:0.0];
+                                            [cell.thumbImage setImage:image];
+                                            [UIView animateWithDuration:0.3 animations:^{
+                                                [cell.thumbImage setAlpha:1.0];
                                             }];
-    [task resume];
-    */
-    [cell.thumbImage setImageWithURL:[NSURL URLWithString:urlString]];
+                                        } else {
+                                            // NSLog(@"image is cached");
+                                            [cell.thumbImage setImage:image];
+                                        }
+                                    }
+                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                        // Your failure handle code
+                                        NSLog(@"load image %@ failed.", urlString);
+                                    }];
     return cell;
 }
 
@@ -304,5 +304,10 @@
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar endEditing:YES];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 @end
