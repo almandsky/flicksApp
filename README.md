@@ -16,8 +16,8 @@ Time spent: x hours spent in total
  * [x] Optional: Add a search bar. (med)
  * [x] Optional: All images fade in as they are loading. (low)
  * [x] Optional: For the large poster, load the low-res image first and switch to high-res when complete. (low)
- * [] Optional: Customize the highlight and selection effect of the cell. (low)
- * [] Optional: Customize the navigation bar. (low)
+ * [x] Optional: Customize the highlight and selection effect of the cell. (low)
+ * [x] Optional: Customize the navigation bar. (low)
  * [] Optional: Tapping on a movie poster image shows the movie poster as full screen and zoomable. (med)
  * [] Optional: User can tap on a button to play the movie trailer. (med)
 

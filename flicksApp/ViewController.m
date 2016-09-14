@@ -146,6 +146,9 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     NSMutableArray *data;
     cell.thumbImage.image = nil;
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     if(self.isFiltered)
         data = self.filteredTableData;
     else
