@@ -13,7 +13,7 @@ Time spent: x hours spent in total
  * [x] Required: User can pull to refresh the movie list.
  * [x] Required: Add a tab bar for Now Playing or Top Rated movies. (high)
  * [x] Required: Implement a UISegmentedControl to switch between a list view and a grid view. (high)
- * [] Optional: Add a search bar. (med)
+ * [x] Optional: Add a search bar. (med)
  * [] Optional: All images fade in as they are loading. (low)
  * [] Optional: For the large poster, load the low-res image first and switch to high-res when complete. (low)
  * [] Optional: Customize the highlight and selection effect of the cell. (low)
