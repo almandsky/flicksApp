@@ -65,6 +65,7 @@
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oXf-li-V4z">
                                 <rect key="frame" x="0.0" y="65" width="320" height="503"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.47570043103448278" blue="0.0" alpha="0.80482601950354615" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="cA5-ln-X8H">
                                     <size key="itemSize" width="150" height="225"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -109,6 +110,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="overviewLabel" destination="evU-hf-XEc" id="Aaa-yC-fAH"/>
                                             <outlet property="thumbImage" destination="RGA-g5-3nQ" id="lZG-Oc-8kc"/>

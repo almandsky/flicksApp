@@ -146,9 +146,10 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     NSMutableArray *data;
     cell.thumbImage.image = nil;
-    
+
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+    cell.backgroundColor = [UIColor colorWithRed:1.0 green:0.5 blue:0.0 alpha:0.7];
+
     if(self.isFiltered)
         data = self.filteredTableData;
     else
@@ -229,6 +230,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieGridCell" forIndexPath:indexPath];
+    cell.thumbImage.image = nil;
+    [cell setSelectedBackgroundView:UITableViewCellSelectionStyleNone];
+
     NSMutableArray *data;
     if(self.isFiltered)
         data = self.filteredTableData;
@@ -245,7 +249,28 @@
     NSString *urlString =
     [@"https://image.tmdb.org/t/p/w92" stringByAppendingString:posterPath];
 
-    [cell.thumbImage setImageWithURL:[NSURL URLWithString:urlString]];
+    //[cell.thumbImage setImageWithURL:[NSURL URLWithString:urlString]];
+    [cell.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                           placeholderImage:nil
+                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                        // Here you can animate the alpha of the imageview from 0.0 to 1.0 in 0.3 seconds
+                                        if (response != nil) {
+                                            // NSLog(@"image is not cached");
+                                            [cell.thumbImage setAlpha:0.0];
+                                            [cell.thumbImage setImage:image];
+                                            [UIView animateWithDuration:0.3 animations:^{
+                                                [cell.thumbImage setAlpha:1.0];
+                                            }];
+                                        } else {
+                                            // NSLog(@"image is cached");
+                                            [cell.thumbImage setImage:image];
+                                        }
+                                    }
+                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                        // Your failure handle code
+                                        NSLog(@"load image %@ failed.", urlString);
+                                    }];
+
     return cell;
 
 }
