@@ -17,11 +17,15 @@
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *movies;
+@property (strong, nonatomic) NSMutableArray* filteredTableData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *gridView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
 @property BOOL isTableView;
+@property BOOL isFiltered;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 
 @end
@@ -89,9 +93,8 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.gridView.dataSource = self;
-    self.gridView.delegate = self;
-    
+    self.gridView.dataSource = (id)self;
+    self.gridView.delegate = (id)self;
 
     //NSLog(@"the selected view index is %d", self.viewControl.selectedSegmentIndex);
     if (self.viewControl.selectedSegmentIndex == 0) {
@@ -116,6 +119,10 @@
     NSLog(@"fetching the movies!");
     [self fetchMovies];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    // setup search bar
+    self.searchBar.delegate = (id)self;
+
     NSLog(@"view loaded");
 }
 
@@ -125,14 +132,24 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    long rowCount;
+    if(self.isFiltered)
+        rowCount = self.filteredTableData.count;
+    else
+        rowCount = self.movies.count;
+    return rowCount;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //NSLog(@"indexPath is : %ld", (long) indexPath.row);
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSMutableArray *data;
+    if(self.isFiltered)
+        data = self.filteredTableData;
+    else
+        data = self.movies;
+    NSDictionary *movie = data[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.overviewLabel.text = movie[@"overview"];
 
@@ -170,18 +187,25 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
     NSLog(@"identifier is %@", segue.identifier);
+    [self.searchBar endEditing:YES];
     if ([segue.identifier isEqualToString:@"detailSegue"]){
         MovieCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         MovieDetailViewController *vc = segue.destinationViewController;
-        vc.movie = self.movies[indexPath.row];
+        if(self.isFiltered)
+            vc.movie = self.filteredTableData[indexPath.row];
+        else
+            vc.movie = self.movies[indexPath.row];
     } else if ([segue.identifier isEqualToString:@"griddetailsegue"]) {
         MovieCollectionViewCell *cell = sender;
         NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
         MovieDetailViewController *vc = segue.destinationViewController;
         NSLog(@"indexPath row is %ld", indexPath.row);
         NSLog(@"indexPath is %@", indexPath);
-        vc.movie = self.movies[indexPath.row];
+        if(self.isFiltered)
+            vc.movie = self.filteredTableData[indexPath.row];
+        else
+            vc.movie = self.movies[indexPath.row];
     } else {
         //TrailerViewController *tvc = segue.destinationViewController;
         NSLog(@"sender is %@",sender);
@@ -189,14 +213,25 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.movies.count;
+    long rowCount;
+    if(self.isFiltered)
+        rowCount = self.filteredTableData.count;
+    else
+        rowCount = self.movies.count;
+    
+    return rowCount;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieGridCell" forIndexPath:indexPath];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSMutableArray *data;
+    if(self.isFiltered)
+        data = self.filteredTableData;
+    else
+        data = self.movies;
+    NSDictionary *movie = data[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.overviewLabel.text = movie[@"overview"];
     
@@ -226,5 +261,48 @@
     }
 }
 
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    NSLog(@"in searchBar text did change");
+    if(text.length == 0) {
+        self.isFiltered = NO;
+    } else {
+        self.isFiltered = YES;
+        self.filteredTableData = [[NSMutableArray alloc] init];
+
+        for (NSDictionary *movie in self.movies)
+        {
+            NSRange nameRange = [movie[@"title"] rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange descriptionRange = [movie[@"overview"] rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound) {
+                [self.filteredTableData addObject:movie];
+            }
+        }
+    }
+
+    if (self.isTableView) {
+        [self.tableView setHidden:NO];
+        [self.gridView setHidden:YES];
+        [self.tableView reloadData];
+    } else {
+        [self.tableView setHidden:YES];
+        [self.gridView setHidden:NO];
+        [self.gridView reloadData];
+    }
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar endEditing:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar endEditing:YES];
+}
 
 @end
