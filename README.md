@@ -4,7 +4,7 @@ This is an Flicks client to display movies currently playing in the theater. The
 
 Time spent: x hours spent in total
 
-Completed user stories:
+## Completed user stories:
 
  * [x] Required: User can view a list of movies currently playing in theaters from The Movie Database. Poster images must be loaded asynchronously.
  * [x] Required: User can view movie details by tapping on a cell.
@@ -22,12 +22,19 @@ Completed user stories:
  * [] Optional: User can tap on a button to play the movie trailer. (med)
 
  
-Notes:
+## Installation:
 
 Initial setting up the project now.
 
-Walkthrough of all user stories:
+```
+pod install
+open flicksApp.xcworkspace
+```
 
-(To be provided)
+
+
+## Walkthrough of all user stories:
+
+(To be provided the gif file)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
