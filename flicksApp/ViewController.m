@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MovieCell.h"
+#import "MovieCollectionViewCell.h"
 #import "MovieDetailViewController.h"
 #import "TrailerViewController.h"
 #import <UIImageView+AFNetworking.h>
@@ -18,6 +19,9 @@
 @property (nonatomic, strong) NSMutableArray *movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (weak, nonatomic) IBOutlet UICollectionView *gridView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
+@property BOOL isTableView;
 
 
 @end
@@ -59,7 +63,12 @@
                                                             NSLog(@"found empty poster_path for title %@", movie[@"title"]);
                                                         }
                                                     }
-                                                    [self.tableView reloadData];
+                                                    if (self.isTableView) {
+                                                        [self.tableView reloadData];
+                                                    } else {
+                                                        [self.gridView reloadData];
+                                                    }
+                                                    
                                                     [self.errorView setHidden:YES];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
@@ -80,11 +89,29 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.gridView.dataSource = self;
+    self.gridView.delegate = self;
+    
 
+    //NSLog(@"the selected view index is %d", self.viewControl.selectedSegmentIndex);
+    if (self.viewControl.selectedSegmentIndex == 0) {
+        self.isTableView = YES;
+        [self.tableView setHidden:NO];
+        [self.gridView setHidden:YES];
+    } else {
+        self.isTableView = NO;
+        [self.tableView setHidden:YES];
+        [self.gridView setHidden:NO];
+    }
     // pull to refresh
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
+    if (self.isTableView) {
+        [self.tableView addSubview:refreshControl];
+    } else {
+        [self.gridView addSubview:refreshControl];
+    }
+    
 
     NSLog(@"fetching the movies!");
     [self fetchMovies];
@@ -142,14 +169,60 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
+    NSLog(@"identifier is %@", segue.identifier);
     if ([segue.identifier isEqualToString:@"detailSegue"]){
         MovieCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         MovieDetailViewController *vc = segue.destinationViewController;
         vc.movie = self.movies[indexPath.row];
+    } else if ([segue.identifier isEqualToString:@"griddetailsegue"]) {
+        MovieCollectionViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
+        MovieDetailViewController *vc = segue.destinationViewController;
+        NSLog(@"indexPath row is %ld", indexPath.row);
+        NSLog(@"indexPath is %@", indexPath);
+        vc.movie = self.movies[indexPath.row];
     } else {
-        TrailerViewController *tvc = segue.destinationViewController;
+        //TrailerViewController *tvc = segue.destinationViewController;
         NSLog(@"sender is %@",sender);
+    }
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.movies.count;
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieGridCell" forIndexPath:indexPath];
+    NSDictionary *movie = self.movies[indexPath.row];
+    cell.titleLabel.text = movie[@"title"];
+    cell.overviewLabel.text = movie[@"overview"];
+    
+    //NSLog(@"title is %@", movie[@"title"]);
+    NSString *posterPath = movie[@"poster_path"];
+    NSLog(@"poster path is %@", posterPath);
+    
+    NSString *urlString =
+    [@"https://image.tmdb.org/t/p/w92" stringByAppendingString:posterPath];
+
+    [cell.thumbImage setImageWithURL:[NSURL URLWithString:urlString]];
+    return cell;
+
+}
+- (IBAction)onViewChange:(UISegmentedControl *)sender {
+
+    if (self.viewControl.selectedSegmentIndex == 0) {
+        self.isTableView = YES;
+        [self.tableView setHidden:NO];
+        [self.gridView setHidden:YES];
+        [self.tableView reloadData];
+    } else {
+        self.isTableView = NO;
+        [self.tableView setHidden:YES];
+        [self.gridView setHidden:NO];
+        [self.gridView reloadData];
     }
 }
 

@@ -62,6 +62,55 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oXf-li-V4z">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cA5-ln-X8H">
+                                    <size key="itemSize" width="150" height="225"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="MovieGridCell" id="TKo-bU-Jip" customClass="MovieCollectionViewCell">
+                                        <rect key="frame" x="5" y="5" width="150" height="225"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="RGA-g5-3nQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="baL-ZW-Xp5">
+                                                    <rect key="frame" x="4" y="97" width="142" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="evU-hf-XEc">
+                                                    <rect key="frame" x="0.0" y="86" width="150" height="54"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="overviewLabel" destination="evU-hf-XEc" id="Aaa-yC-fAH"/>
+                                            <outlet property="thumbImage" destination="RGA-g5-3nQ" id="lZG-Oc-8kc"/>
+                                            <outlet property="titleLabel" destination="baL-ZW-Xp5" id="ktJ-Nf-2hJ"/>
+                                            <segue destination="5Tg-yx-FKL" kind="push" identifier="griddetailsegue" id="kuu-2w-FMn"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                             <view hidden="YES" contentMode="scaleToFill" id="OWK-vI-qIy">
                                 <rect key="frame" x="0.0" y="65" width="320" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -81,10 +130,37 @@
                     </view>
                     <navigationItem key="navigationItem" id="NOY-jR-6W7">
                         <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="Tn1-Y9-6VM">
+                            <rect key="frame" x="8" y="6" width="304" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" searchBarStyle="minimal" id="WRy-i8-DhY">
+                                    <rect key="frame" x="77" y="-5" width="227" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="x1r-DY-8GB">
+                                    <rect key="frame" x="8" y="3" width="59" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="" image="iconmonstr-menu-2-16.png"/>
+                                        <segment title="" image="iconmonstr-view-6-16.png"/>
+                                    </segments>
+                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="onViewChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="KuO-xs-g1C"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="errorView" destination="OWK-vI-qIy" id="Xpq-AL-h20"/>
+                        <outlet property="gridView" destination="oXf-li-V4z" id="wdp-OF-hGM"/>
                         <outlet property="tableView" destination="hdf-Ux-rMF" id="UMN-T3-gN0"/>
+                        <outlet property="viewControl" destination="x1r-DY-8GB" id="Gy9-Vt-mTF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -258,4 +334,11 @@
             <point key="canvasLocation" x="693" y="975"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconmonstr-menu-2-16.png" width="16" height="16"/>
+        <image name="iconmonstr-view-6-16.png" width="16" height="16"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kuu-2w-FMn"/>
+    </inferredMetricsTieBreakers>
 </document>
