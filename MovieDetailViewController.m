@@ -10,6 +10,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "MBProgressHUD.h"
 
+
 @interface MovieDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @end
@@ -129,6 +130,53 @@
                                                 }
                                             }];
     [task resume];
+    
+    NSString *videosURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=", self.movie[@"id"]];
+    NSString *requestUrl2 = [videosURL stringByAppendingString:apiKey];
+    NSURL *url2 = [NSURL URLWithString:requestUrl2];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:url2];
+    NSURLSession *session2 =
+    [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                  delegate:nil
+                             delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task2 = [session2 dataTaskWithRequest:request2
+                                            completionHandler:^(NSData * _Nullable data,
+                                                                NSURLResponse * _Nullable response,
+                                                                NSError * _Nullable error) {
+                                                if (!error) {
+                                                    NSError *jsonError = nil;
+                                                    NSDictionary *responseDictionary =
+                                                    [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:kNilOptions
+                                                                                      error:&jsonError];
+                                                    NSLog(@"response of movie details are %@", responseDictionary);
+                                                    
+                                                    //[self.playerViewer loadWithVideoId:@"9qqfMvKxBa0"];
+                                                    NSMutableArray *videos = responseDictionary[@"results"];
+                                                    NSLog(@"videos are %@", videos);
+                                                    NSString *videoKey;
+                                                    if (![videos isEqual: [NSNull null]] && videos.count > 0) {
+                                                        for (NSDictionary *video in videos) {
+                                                            videoKey = video[@"key"];
+                                                            //NSString *videoSite = video[@"site"];
+                                                            //NSString *videoType = video[@"type"];
+                                                            if (![videoKey isEqual: [NSNull null]]) {
+                                                                break;
+                                                            }
+                                                        }
+                                                        if (![videoKey isEqual: [NSNull null]]) {
+                                                            [self.playerViewer setHidden:NO];
+                                                            [self.playerViewer loadWithVideoId:videoKey];
+                                                        }
+                                                    }
+                                                    //[self.errorView setHidden:YES];
+                                                } else {
+                                                    NSLog(@"An error occurred: %@", error.description);
+                                                    //[self.errorView setHidden:NO];
+                                                }
+                                            }];
+    [task2 resume];
+    
 
 }
 

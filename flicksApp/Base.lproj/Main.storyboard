@@ -292,6 +292,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="0.71149157801418439" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" id="WWL-6E-aTQ" customClass="YTPlayerView">
+                                        <rect key="frame" x="28" y="170" width="264" height="153"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" id="1m3-C0-7y6">
@@ -317,6 +322,7 @@
                         <outlet property="errorView" destination="1m3-C0-7y6" id="ik5-q0-Li9"/>
                         <outlet property="infoView" destination="ybp-bQ-j1B" id="Nu1-8W-BxE"/>
                         <outlet property="overviewLabel" destination="1vl-Qk-mPS" id="bsm-RY-KcF"/>
+                        <outlet property="playerViewer" destination="WWL-6E-aTQ" id="gwj-y1-ttY"/>
                         <outlet property="releaseDate" destination="JFS-fx-S9f" id="mdr-Dt-yeA"/>
                         <outlet property="runtimeImage" destination="CQV-8H-n3P" id="ZXO-PJ-P04"/>
                         <outlet property="runtimeLable" destination="LMk-Lr-QQ3" id="Q0R-2e-c3u"/>
