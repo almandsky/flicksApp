@@ -99,13 +99,27 @@
                                                                                     options:kNilOptions
                                                                                       error:&jsonError];
                                                     // NSLog(@"response of movie details are %@", responseDictionary);
+                                                    NSObject *runtimeObj = responseDictionary[@"runtime"];
+                                                    int hour;
+                                                    int mins;
+                                                    if ([runtimeObj isEqual: [NSNull null]]) {
+                                                        hour = 0;
+                                                        mins = 0;
+                                                    } else {
+                                                        int runtime = [responseDictionary[@"runtime"] intValue];
+                                                        hour = runtime / 60;
+                                                        mins = runtime % 60;
+                                                    }
 
-                                                    int runtime = [responseDictionary[@"runtime"] intValue];
-                                                    int hour = runtime / 60;
-                                                    int mins = runtime % 60;
                                                     NSString * runtimeString = [NSString stringWithFormat:@"%d hr %d mins", hour, mins];
                                                     self.runtimeLable.text = runtimeString;
-                                                    float voteAverage = [responseDictionary[@"vote_average"] floatValue] * 10;
+                                                    NSObject *voteObj = responseDictionary[@"vote_average"];
+                                                    float voteAverage;
+                                                    if ([voteObj isEqual: [NSNull null]]) {
+                                                        voteAverage = 0.0;
+                                                    } else {
+                                                        voteAverage = [responseDictionary[@"vote_average"] floatValue] * 10;
+                                                    }
                                                     self.voteLabel.text = [NSString stringWithFormat:@"%0.f%%", voteAverage];
                                                     // NSLog(@"vote average is %0.f%%@", voteAverage);
                                                     [self.errorView setHidden:YES];

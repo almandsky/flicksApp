@@ -35,7 +35,6 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[nowPlayingNavigationController,topRatedNavigationController];
-    
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     

@@ -148,7 +148,7 @@
     cell.thumbImage.image = nil;
 
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    cell.backgroundColor = [UIColor colorWithRed:1.0 green:0.5 blue:0.0 alpha:0.7];
+    cell.backgroundColor = [UIColor colorWithRed:1.0 green:0.5 blue:0.0 alpha:0.5];
 
     if(self.isFiltered)
         data = self.filteredTableData;
