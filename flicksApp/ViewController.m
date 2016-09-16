@@ -335,7 +335,8 @@
         NSLog(@"sender is %@",sender);
         UINavigationController *nc = segue.destinationViewController;
         TrailerViewController *tvc = nc.viewControllers[0];
-        MovieCell *cell = [[[sender superview] superview] superview];
+        MovieCell *cell = (MovieCell*) [[sender superview] superview];
+
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
         if(self.isFiltered)
