@@ -34,7 +34,7 @@
     nowPlayingNavigationController.tabBarItem.image = [UIImage imageNamed:@"iconmonstr-video-9-24.png"];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[nowPlayingNavigationController,topRatedNavigationController];
+    tabBarController.viewControllers = @[topRatedNavigationController,nowPlayingNavigationController];
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     

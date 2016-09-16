@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface TrailerViewController : UIViewController
 
 @property (nonatomic,strong) NSDictionary *movie;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *trailerImageView;
 
 @end
+
