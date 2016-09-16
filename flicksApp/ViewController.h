@@ -13,4 +13,3 @@
 @property NSString *endpoint;
 
 @end
-
