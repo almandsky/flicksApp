@@ -18,7 +18,7 @@ Time spent: x hours spent in total
  * [x] Optional: For the large poster, load the low-res image first and switch to high-res when complete. (low)
  * [x] Optional: Customize the highlight and selection effect of the cell. (low)
  * [x] Optional: Customize the navigation bar. (low)
- * [] Optional: Tapping on a movie poster image shows the movie poster as full screen and zoomable. (med)
+ * [x] Optional: Tapping on a movie poster image shows the movie poster as full screen and zoomable. (med)
  * [] Optional: User can tap on a button to play the movie trailer. (med)
 
  
