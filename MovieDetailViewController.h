@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YTPlayerView.h"
 
 @interface MovieDetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -21,5 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *voteImage;
 
 @property (nonatomic,strong) NSDictionary *movie;
+@property (strong, nonatomic) IBOutlet YTPlayerView *playerViewer;
+
+
 
 @end

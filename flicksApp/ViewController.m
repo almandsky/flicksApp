@@ -93,6 +93,7 @@
     self.tableView.delegate = self;
     self.gridView.dataSource = (id)self;
     self.gridView.delegate = (id)self;
+    self.searchBar.delegate = (id)self;
 
     //NSLog(@"the selected view index is %d", self.viewControl.selectedSegmentIndex);
     if (self.viewControl.selectedSegmentIndex == 0) {
@@ -117,9 +118,7 @@
     NSLog(@"fetching the movies!");
     [self fetchMovies];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    // setup search bar
-    self.searchBar.delegate = (id)self;
+    
 
     NSLog(@"view loaded");
 }
@@ -127,6 +126,44 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"identifier is %@", segue.identifier);
+    [self.searchBar endEditing:YES];
+    if ([segue.identifier isEqualToString:@"detailSegue"]){
+        MovieCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        MovieDetailViewController *vc = segue.destinationViewController;
+        if(self.isFiltered)
+            vc.movie = self.filteredTableData[indexPath.row];
+        else
+            vc.movie = self.movies[indexPath.row];
+    } else if ([segue.identifier isEqualToString:@"griddetailsegue"]) {
+        MovieCollectionViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
+        MovieDetailViewController *vc = segue.destinationViewController;
+        NSLog(@"indexPath row is %ld", indexPath.row);
+        NSLog(@"indexPath is %@", indexPath);
+        if(self.isFiltered)
+            vc.movie = self.filteredTableData[indexPath.row];
+        else
+            vc.movie = self.movies[indexPath.row];
+    } else {
+        NSLog(@"sender is %@",sender);
+        UINavigationController *nc = segue.destinationViewController;
+        TrailerViewController *tvc = nc.viewControllers[0];
+        MovieCell *cell = (MovieCell*) [[sender superview] superview];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        if(self.isFiltered)
+            tvc.movie = self.filteredTableData[indexPath.row];
+        else
+            tvc.movie = self.movies[indexPath.row];
+        
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -185,6 +222,8 @@
                                     }];
     return cell;
 }
+
+
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -310,42 +349,7 @@
 
 
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"identifier is %@", segue.identifier);
-    [self.searchBar endEditing:YES];
-    if ([segue.identifier isEqualToString:@"detailSegue"]){
-        MovieCell *cell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        MovieDetailViewController *vc = segue.destinationViewController;
-        if(self.isFiltered)
-            vc.movie = self.filteredTableData[indexPath.row];
-        else
-            vc.movie = self.movies[indexPath.row];
-    } else if ([segue.identifier isEqualToString:@"griddetailsegue"]) {
-        MovieCollectionViewCell *cell = sender;
-        NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
-        MovieDetailViewController *vc = segue.destinationViewController;
-        NSLog(@"indexPath row is %ld", indexPath.row);
-        NSLog(@"indexPath is %@", indexPath);
-        if(self.isFiltered)
-            vc.movie = self.filteredTableData[indexPath.row];
-        else
-            vc.movie = self.movies[indexPath.row];
-    } else {
-        NSLog(@"sender is %@",sender);
-        UINavigationController *nc = segue.destinationViewController;
-        TrailerViewController *tvc = nc.viewControllers[0];
-        MovieCell *cell = (MovieCell*) [[sender superview] superview];
 
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-
-        if(self.isFiltered)
-            tvc.movie = self.filteredTableData[indexPath.row];
-        else
-            tvc.movie = self.movies[indexPath.row];
-
-    }
-}
 
 @end
 
