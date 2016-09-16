@@ -30,6 +30,10 @@
 
 @implementation ViewController
 
+- (void)viewDidLayoutSubviews {
+    self.tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0);
+}
+
 -(void)fetchMovies{
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
     NSString *endpointURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=", self.endpoint];
@@ -119,6 +123,8 @@
     [self fetchMovies];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 138;
 
     NSLog(@"view loaded");
 }
@@ -252,7 +258,7 @@
     cell.titleLabel.text = movie[@"title"];
     cell.overviewLabel.text = movie[@"overview"];
     
-    //NSLog(@"title is %@", movie[@"title"]);
+    NSLog(@"title is %@", movie[@"title"]);
     NSString *posterPath = movie[@"poster_path"];
     NSLog(@"poster path is %@", posterPath);
     
