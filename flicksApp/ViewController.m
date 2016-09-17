@@ -150,14 +150,14 @@
         MovieCollectionViewCell *cell = sender;
         NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
         MovieDetailViewController *vc = segue.destinationViewController;
-        NSLog(@"indexPath row is %ld", indexPath.row);
-        NSLog(@"indexPath is %@", indexPath);
+        // NSLog(@"indexPath row is %ld", indexPath.row);
+        // NSLog(@"indexPath is %@", indexPath);
         if(self.isFiltered)
             vc.movie = self.filteredTableData[indexPath.row];
         else
             vc.movie = self.movies[indexPath.row];
     } else {
-        NSLog(@"sender is %@",sender);
+        // NSLog(@"sender is %@",sender);
         UINavigationController *nc = segue.destinationViewController;
         TrailerViewController *tvc = nc.viewControllers[0];
         MovieCell *cell = (MovieCell*) [[sender superview] superview];

@@ -19,14 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"Movie Title is %@", self.movie[@"title"]);
+    // NSLog(@"Movie Title is %@", self.movie[@"title"]);
     self.scrollView.delegate = self;
     [self.scrollView setMinimumZoomScale:0.25];
     [self.scrollView setMaximumZoomScale:2];
 
     // load the image
     NSString *posterPath = self.movie[@"poster_path"];
-    NSLog(@"poster path is %@", posterPath);
+    // NSLog(@"poster path is %@", posterPath);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     NSString *urlString = [@"https://image.tmdb.org/t/p/w150" stringByAppendingString:posterPath];
@@ -42,7 +42,7 @@
                                          [UIView animateWithDuration:0.3 animations:^{
                                              [self.trailerImageView setAlpha:1.0];
                                          } completion:^(BOOL finished) {
-                                             NSLog(@"loading the large image %@", largeImgUrlString);
+                                             // NSLog(@"loading the large image %@", largeImgUrlString);
                                              [self.trailerImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:largeImgUrlString]]
                                                                      placeholderImage:nil
                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){

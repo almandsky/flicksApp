@@ -26,21 +26,6 @@
     self.runtimeImage.image = [UIImage imageNamed:@"iconmonstr-time-6-16.png"];
 
     self.overviewLabel.text = self.movie[@"overview"];
-    //[self.overviewLabel sizeToFit];
-
-    /*
-    CGRect frame = self.infoView.frame;
-    frame.size.height = self.overviewLabel.frame.size.height + self.overviewLabel.frame.origin.y + 10;
-    self.infoView.frame = frame;
-    self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.frame.size.width, 60 + self.infoView.frame.origin.y + self.infoView.frame.size.height);
-    */
-    /*
-    CGRect frame = self.movieContentView.frame;
-
-    frame.size.height = self.overviewLabel.frame.size.height + self.overviewLabel.frame.origin.y + 10;
-    self.movieContentView.frame = frame;
-    self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.frame.size.width, 360 + self.movieContentView.frame.origin.y + self.movieContentView.frame.size.height);
-    */
     
     // set the release
     // NSLog(@"release date is %@", self.movie[@"release_date"]);
@@ -70,7 +55,7 @@
                                         [UIView animateWithDuration:0.3 animations:^{
                                             [self.detailImage setAlpha:1.0];
                                         } completion:^(BOOL finished) {
-                                            NSLog(@"loading the large image %@", largeImgUrlString);
+                                            // NSLog(@"loading the large image %@", largeImgUrlString);
                                             [self.detailImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:largeImgUrlString]]
                                                                     placeholderImage:nil
                                                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
@@ -159,11 +144,11 @@
                                                     [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:kNilOptions
                                                                                       error:&jsonError];
-                                                    NSLog(@"response of movie details are %@", responseDictionary);
+                                                    // NSLog(@"response of movie details are %@", responseDictionary);
                                                     
                                                     //[self.playerViewer loadWithVideoId:@"9qqfMvKxBa0"];
                                                     NSMutableArray *videos = responseDictionary[@"results"];
-                                                    NSLog(@"videos are %@", videos);
+                                                    // NSLog(@"videos are %@", videos);
                                                     NSString *videoKey;
                                                     if (![videos isEqual: [NSNull null]] && videos.count > 0) {
                                                         for (NSDictionary *video in videos) {
