@@ -30,6 +30,10 @@
 
 @implementation ViewController
 
+- (void)viewDidLayoutSubviews {
+    self.tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0);
+}
+
 -(void)fetchMovies{
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
     NSString *endpointURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=", self.endpoint];
@@ -119,6 +123,8 @@
     [self fetchMovies];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 138;
 
     NSLog(@"view loaded");
 }
@@ -144,14 +150,14 @@
         MovieCollectionViewCell *cell = sender;
         NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
         MovieDetailViewController *vc = segue.destinationViewController;
-        NSLog(@"indexPath row is %ld", indexPath.row);
-        NSLog(@"indexPath is %@", indexPath);
+        // NSLog(@"indexPath row is %ld", indexPath.row);
+        // NSLog(@"indexPath is %@", indexPath);
         if(self.isFiltered)
             vc.movie = self.filteredTableData[indexPath.row];
         else
             vc.movie = self.movies[indexPath.row];
     } else {
-        NSLog(@"sender is %@",sender);
+        // NSLog(@"sender is %@",sender);
         UINavigationController *nc = segue.destinationViewController;
         TrailerViewController *tvc = nc.viewControllers[0];
         MovieCell *cell = (MovieCell*) [[sender superview] superview];
@@ -252,7 +258,7 @@
     cell.titleLabel.text = movie[@"title"];
     cell.overviewLabel.text = movie[@"overview"];
     
-    //NSLog(@"title is %@", movie[@"title"]);
+    NSLog(@"title is %@", movie[@"title"]);
     NSString *posterPath = movie[@"poster_path"];
     NSLog(@"poster path is %@", posterPath);
     
