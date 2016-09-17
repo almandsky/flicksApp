@@ -19,12 +19,12 @@ Time spent: x hours spent in total
  * [x] Optional: Customize the highlight and selection effect of the cell. (low)
  * [x] Optional: Customize the navigation bar. (low)
  * [x] Optional: Tapping on a movie poster image shows the movie poster as full screen and zoomable. (med)
- * [] Optional: User can tap on a button to play the movie trailer. (med)
+ * [x] Optional: User can tap on a button to play the movie trailer. (med)
 
  
 ## Installation:
 
-Initial setting up the project now.
+Initial setting up the project now.  Please run the app with iPhone 5s because the auto layout is not yet enabled.
 
 ```
 pod install
@@ -33,8 +33,28 @@ open flicksApp.xcworkspace
 
 
 
-## Walkthrough of all user stories:
+Here's a walkthrough of implemented user stories:
 
-(To be provided the gif file)
+<img src='https://github.com/almandsky/flicksApp/raw/master/demo/flicksApp2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+Describe any challenges encountered while building the app.
+
+## License
+
+Copyright 2016 Sky Chen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
