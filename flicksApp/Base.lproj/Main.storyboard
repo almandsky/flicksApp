@@ -147,7 +147,7 @@
                                         <rect key="frame" x="5" y="5" width="150" height="225"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKl-4o-bLj">
@@ -473,6 +473,7 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="6Hu-nc-t1b"/>
                                                         <exclude reference="88a-wN-GkW"/>
                                                         <exclude reference="Erm-2Y-EBy"/>
                                                         <exclude reference="KfJ-y0-sQC"/>
