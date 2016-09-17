@@ -11,7 +11,8 @@
 #import "MBProgressHUD.h"
 
 
-@interface MovieDetailViewController ()
+@interface MovieDetailViewController () <UIScrollViewDelegate>
+@property (weak, nonatomic) IBOutlet UIView *movieContentView;
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @end
 
@@ -25,13 +26,22 @@
     self.runtimeImage.image = [UIImage imageNamed:@"iconmonstr-time-6-16.png"];
 
     self.overviewLabel.text = self.movie[@"overview"];
-    [self.overviewLabel sizeToFit];
+    //[self.overviewLabel sizeToFit];
 
+    /*
     CGRect frame = self.infoView.frame;
     frame.size.height = self.overviewLabel.frame.size.height + self.overviewLabel.frame.origin.y + 10;
     self.infoView.frame = frame;
     self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.frame.size.width, 60 + self.infoView.frame.origin.y + self.infoView.frame.size.height);
+    */
+    /*
+    CGRect frame = self.movieContentView.frame;
 
+    frame.size.height = self.overviewLabel.frame.size.height + self.overviewLabel.frame.origin.y + 10;
+    self.movieContentView.frame = frame;
+    self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.frame.size.width, 360 + self.movieContentView.frame.origin.y + self.movieContentView.frame.size.height);
+    */
+    
     // set the release
     // NSLog(@"release date is %@", self.movie[@"release_date"]);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];

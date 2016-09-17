@@ -62,7 +62,7 @@
 
     [self.scrollView setContentSize:self.trailerImageView.image.size];
     [self.scrollView addSubview:self.trailerImageView];
-    [self.scrollView setZoomScale:1.0];
+    [self.scrollView setZoomScale:1.2];
 }
 
 - (void)didReceiveMemoryWarning {
