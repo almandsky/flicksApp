@@ -2,7 +2,7 @@
 
 This is an Flicks client to display movies currently playing in the theater. The purpose of this project is to develop a basic MVC application and start playing with table views, one of the more complex, but important views in iOS.
 
-Time spent: x hours spent in total
+Time spent: 25 hours spent in total
 
 ## Completed user stories:
 
@@ -24,13 +24,12 @@ Time spent: x hours spent in total
  
 ## Installation:
 
-Initial setting up the project now.  Please run the app with iPhone 5s because the auto layout is not yet enabled.
+Initial setting up the project now.
 
 ```
 pod install
 open flicksApp.xcworkspace
 ```
-
 
 
 Here's a walkthrough of implemented user stories:
@@ -41,7 +40,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+ * The auto layout is taking most of the time to pick up and fine tune the layout for the Movie detail view to achieve the scrolling effect.
+ * Passing data between views need the delegate protocol, which is not done yet. 
 
 ## License
 
